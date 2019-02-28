@@ -3,6 +3,7 @@ package br.senai.sp.agendacontatos;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.VisibleForTesting;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listaContatos;
     private Button btnNovoContato;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     btnNovoContato = findViewById(R.id.btn_novo_contato);
 
     listaContatos = findViewById(R.id.lista_contato);
+
+
 
 
     // O BOTÃO CHAMA A ACTIVITY CADASTRAR CONTATO
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-        registerForContextMenu(listaContatos);
+    registerForContextMenu(listaContatos);
 
     listaContatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dao.excluir(contato);
+
                 dao.close();
                 carregarLista();
             }
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         carregarLista();
+
         super.onResume();
     }
 
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ContatoDAO dao = new ContatoDAO(this);
-        List<Contato> contato = dao.getContato();
+        List<Contato> contatos = dao.getContatos();
         dao.close();
 
 
@@ -140,10 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 "Minha Vida em Marte"};
         */
 
-        ArrayAdapter<Contato> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, contato);
+        ArrayAdapter<Contato> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, contatos);
         listaContatos.setAdapter(adapter);
 
     }
-
 
 }

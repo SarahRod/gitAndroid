@@ -68,7 +68,6 @@ public class Contato implements Serializable{
     public String toString() {
 
 
-        //return this.id + " - " + this.nome;
-        return this.nome;
+        return this.id + " - " + this.nome;
     }
 }

@@ -20,14 +20,14 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
         //ABERTURA DO BANCO DE DADOS
 
-        super(context, "db_contato", null, 1);
+        super(context, "db_contato", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
        String sql = "CREATE TABLE tbl_contato(" +
-               "id INTERGER PRIMARY KEY," +
+               "id INTEGER PRIMARY KEY," +
                "nome TEXT NOT NULL, " +
                "endereco TEXT NOT NULL, " +
                "telefone TEXT NOT NULL, " +
@@ -39,7 +39,9 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sql =  "DROP TABLE IF EXISTS tbl_contato";
+        db.execSQL(sql);
+        onCreate(db);
     }
 
     public void salvar(Contato contato){
@@ -49,7 +51,6 @@ public class ContatoDAO extends SQLiteOpenHelper {
         ContentValues dados = getContentValues(contato);
 
         db.insert("tbl_contato", null, dados);
-
 
     }
 
@@ -66,7 +67,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
         return dados;
     }
 
-    public List<Contato> getContato(){
+    public List<Contato> getContatos(){
 
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM tbl_contato";

@@ -10,19 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="15dp">
 
+        <!--Titulo da Activity-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar Contato"
-            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="35dp"
             android:layout_marginTop="8dp"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="10dp" />
 
 
-
+        <!--****************CADASTRO NOME****************-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,11 +33,13 @@
                 android:id="@+id/txt_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite o Nome..."
+                android:hint="Nome"
                 android:layout_marginBottom="10dp"/>
+
         </android.support.design.widget.TextInputLayout>
 
 
+        <!--**************CADASTRO ENDEREÇO**********-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,10 +48,19 @@
                 android:id="@+id/txt_endereco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite o Endereço"
-                android:layout_marginBottom="10dp"/>
+                android:hint="Endereço"/>
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ex.: Rua 15 de Novembro,132 - Vila Mender - Rio de Janeiro - RJ"
+            android:textSize="12dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="20dp" />
+
+
+        <!--*********CADASTRO TELEFONE*************-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,11 +69,21 @@
                 android:id="@+id/txt_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite o Telefone"
-                android:layout_marginBottom="10dp"/>
+                android:hint="Telefone"
+                android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ex.: (00) 0000-000 "
+            android:textSize="12dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="20dp"
+           />
 
+
+        <!--********CADASTRO E-MAIL***************-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,11 +92,13 @@
                 android:id="@+id/txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite o E-mail"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
                 android:layout_marginBottom="10dp" />
         </android.support.design.widget.TextInputLayout>
 
 
+        <!--***********CADASTRO LINKEDIN************-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +107,8 @@
                 android:id="@+id/txt_linkedin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite o endereço Linkedin"
+                android:hint="Endereço Linkedin"
+                android:inputType="textEmailAddress"
                 android:layout_marginBottom="10dp"/>
         </android.support.design.widget.TextInputLayout>
 

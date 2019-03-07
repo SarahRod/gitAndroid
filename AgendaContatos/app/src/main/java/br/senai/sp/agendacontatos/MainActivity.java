@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void carregarLista(){
+    public void carregarLista(){
 
 
         ContatoDAO dao = new ContatoDAO(this);

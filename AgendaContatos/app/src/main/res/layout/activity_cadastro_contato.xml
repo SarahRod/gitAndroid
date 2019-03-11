@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar Contato"
-            android:textColor="@color/colorPrimary"
             android:textSize="35dp"
             android:layout_marginTop="8dp"
             android:textAlignment="center"
@@ -55,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ex.: Rua 15 de Novembro,132 - Vila Mender - Rio de Janeiro - RJ"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="20dp" />
 
@@ -70,16 +69,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telefone"
-                android:inputType="number"/>
+                android:inputType="textPhonetic"/>
         </android.support.design.widget.TextInputLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ex.: (00) 0000-000 "
-            android:textSize="12dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ex.: (00) 0000-000 "
+        android:textSize="12sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
            />
 
 
@@ -96,6 +95,16 @@
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="10dp" />
         </android.support.design.widget.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ex.: xxxx@xxx.com "
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="20dp"
+            />
+
+
 
 
         <!--***********CADASTRO LINKEDIN************-->
@@ -111,6 +120,7 @@
                 android:inputType="textEmailAddress"
                 android:layout_marginBottom="10dp"/>
         </android.support.design.widget.TextInputLayout>
+
 
     </LinearLayout>
 

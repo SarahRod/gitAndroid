@@ -1,7 +1,11 @@
 package br.senai.sp.agendacontatos.helper;
 
 import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
 import android.widget.EditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import br.senai.sp.agendacontatos.CadastroContato;
 import br.senai.sp.agendacontatos.R;
@@ -60,6 +64,26 @@ public class CadastroContatoHelper {
         this.contato = contato;
     }
 
+   /* public  boolean validarEmail(){
+        boolean validadoEmail = false;
+
+       if (txtEmail.toString().length() > 0){
+           String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+           Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+           Matcher matcher = pattern.matcher((CharSequence) txtEmail);
+           if (matcher.matches()) {
+               validadoEmail = true;
+           }
+
+       }
+
+
+        return validadoEmail;
+    }*/
+
+
+
+
     public boolean validar(){
         boolean validado = true;
 
@@ -82,6 +106,7 @@ public class CadastroContatoHelper {
         }
 
 
+
         if(txtTelefone.getText().toString().isEmpty()){
             layoutTxtTelefone.setErrorEnabled(true);
             layoutTxtTelefone.setError("Por favor, digite o Telefone");
@@ -98,6 +123,22 @@ public class CadastroContatoHelper {
             layoutTxtEmail.setErrorEnabled(false);
         }
 
+
+        if (!txtEmail.getText().toString().matches("[a-zA-Z0-9-_.]+@[a-z]+.[a-z]+")) {
+                layoutTxtEmail.setErrorEnabled(true);
+                layoutTxtEmail.setError("Por favor, digite o email conforme o exemplo");
+                validado = false;
+        }
+
+        if(!txtTelefone.getText().toString().matches("^\\([0-9]{2}\\) [0-9]{4}-[0-9]{4}$")){
+            layoutTxtTelefone.setErrorEnabled(true);
+            layoutTxtTelefone.setError("Por favor, digite o Telefone conforme o exemplo");
+            validado = false;
+
+        }
+
+
+
         if(txtLinkedin.getText().toString().isEmpty()){
             layoutTxtLinkedin.setErrorEnabled(true);
             layoutTxtLinkedin.setError("Por favor, digite o o endereço do Linkedin");
@@ -105,6 +146,7 @@ public class CadastroContatoHelper {
         }else{
             layoutTxtLinkedin.setErrorEnabled(false);
         }
+
 
         return validado;
     }

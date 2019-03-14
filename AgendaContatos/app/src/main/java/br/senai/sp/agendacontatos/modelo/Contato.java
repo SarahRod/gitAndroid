@@ -68,6 +68,6 @@ public class Contato implements Serializable{
     public String toString() {
 
 
-        return "\n" + "Nome: " + this.nome + "\n" + "Telefone: "+ this.telefone + "\n" ;
+        return "\n" + this.nome + "\n" + this.telefone + "\n" ;
     }
 }

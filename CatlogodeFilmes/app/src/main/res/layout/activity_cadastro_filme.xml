@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CadastroFilmeActivity"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+        <EditText
+            android:id="@+id/txt_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título do Filme"/>
+
+        <EditText
+            android:id="@+id/txt_data_lancamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data de Lançamento"
+            android:inputType="date"/>
+        <EditText
+            android:id="@+id/txt_diretor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Diretor"/>
+
+        <EditText
+            android:id="@+id/txt_genero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gênero do Filme"/>
+
+        <EditText
+            android:id="@+id/txt_duracao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Duração do Filme"
+            android:inputType="datetime"/>
+
+        <RatingBar
+            android:id="@+id/rate_nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:max="10"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</ScrollView>

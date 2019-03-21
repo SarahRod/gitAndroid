@@ -1,6 +1,9 @@
 package br.senai.sp.catlogodefilmes;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import br.senai.sp.dao.FilmeDAO;
 import br.senai.sp.modelo.Filme;
@@ -16,13 +23,47 @@ import br.senai.sp.modelo.Filme;
 public class CadastroFilmeActivity extends AppCompatActivity {
 
     private CadastroFilmeHelper helper;
+    private Button btnCamera;
+    private Button btnGaleria;
+    private ImageView imgFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_filme);
 
+
+
         helper = new CadastroFilmeHelper(this); // quer passar uma activity que será está// no construtor recebe a actuvity e fazer a ligação
+
+        btnCamera = findViewById(R.id.btn_camera);
+        btnGaleria = findViewById(R.id.btn_galeria);
+        imgFoto = findViewById(R.id.image_view_filme);
+
+        btnGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CadastroFilmeActivity.this, "chamando a galeria", Toast.LENGTH_LONG).show();
+
+                Intent intentGaleria = new Intent(Intent.ACTION_GET_CONTENT);
+                intentGaleria.setType("image/*");
+                startActivityForResult(intentGaleria, 5000);/*A foto vai retornar o numero que vc escolheu*/
+
+            }
+        });
+
+
+
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CadastroFilmeActivity.this, "Chamando a Câmera", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
         Intent intent = getIntent();
         Filme filme = (Filme) intent.getSerializableExtra("filme");
 
@@ -30,10 +71,29 @@ public class CadastroFilmeActivity extends AppCompatActivity {
             helper.preencherFormulario(filme);
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode, @Nullable Intent data) {
+        Toast.makeText(CadastroFilmeActivity.this, "SELECIONADA", Toast.LENGTH_LONG).show();
+
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(data.getData());
+
+            /*fabrica os bits da imagem ele é a imagem*/
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            imgFoto.setImageBitmap(bitmap);
+            
 
 
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override // reescreve o codigo que tem na mãe e rodou o nosso método que criamos e retornou o menu inflado

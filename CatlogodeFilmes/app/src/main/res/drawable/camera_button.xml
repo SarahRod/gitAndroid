@@ -3,10 +3,9 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/colorPrimary"/>
-
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_add">
+    <item android:drawable="@drawable/ic_camera">
 
     </item>
 </layer-list>

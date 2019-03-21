@@ -4,52 +4,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
+
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".CadastroFilmeActivity"
-        android:orientation="vertical"
-        android:layout_margin="8dp">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txt_titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Título do Filme"/>
 
-        <EditText
-            android:id="@+id/txt_data_lancamento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data de Lançamento"
-            android:inputType="date"/>
-        <EditText
-            android:id="@+id/txt_diretor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Diretor"/>
 
-        <EditText
-            android:id="@+id/txt_genero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Gênero do Filme"/>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="200dp">
 
-        <EditText
-            android:id="@+id/txt_duracao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Duração do Filme"
-            android:inputType="datetime"/>
+               <ImageView
 
-        <RatingBar
-            android:id="@+id/rate_nota"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:max="10"
-            android:layout_gravity="center"/>
+                   android:id="@+id/image_view_filme"
+                   android:layout_width="match_parent"
+                   android:layout_height="175dp"
+                   android:src="@drawable/ic_movie"
+                   />
+               <Button
+                   android:id="@+id/btn_galeria"
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentBottom="true"
+                   android:layout_alignParentEnd="true"
+                   android:layout_marginRight="10dp"
+                   android:background="@drawable/galeria_button"
+                   />
+               <Button
+                   android:id="@+id/btn_camera"
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentBottom="true"
+                   android:layout_marginRight="10dp"
+                   android:background="@drawable/camera_button"
+                   android:layout_toLeftOf="@id/btn_galeria"
+                   />
+
+           </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/txt_titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Título do Filme"/>
+
+            <EditText
+                android:id="@+id/txt_data_lancamento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data de Lançamento"
+                android:inputType="date"/>
+            <EditText
+                android:id="@+id/txt_diretor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Diretor"/>
+
+            <EditText
+                android:id="@+id/txt_genero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Gênero do Filme"/>
+
+            <EditText
+                android:id="@+id/txt_duracao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duração do Filme"
+                android:inputType="datetime"/>
+
+            <RatingBar
+                android:id="@+id/rate_nota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:max="10"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

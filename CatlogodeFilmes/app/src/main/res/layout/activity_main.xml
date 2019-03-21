@@ -18,7 +18,6 @@
         android:id="@+id/bt_novo_filme"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:text="+"
         android:paddingBottom="3dp"
         android:textSize="42dp"
         android:textColor="#ffffff"

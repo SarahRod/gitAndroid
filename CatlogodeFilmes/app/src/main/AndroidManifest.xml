@@ -20,7 +20,15 @@
 
         </activity>
 
-        <activity android:name=".CadastroFilmeActivity"></activity>
+        <activity android:name=".CadastroFilmeActivity">
+            <meta-data android:name = "android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+
+
+            </meta-data>
+
+
+        </activity>
 
     </application>
 

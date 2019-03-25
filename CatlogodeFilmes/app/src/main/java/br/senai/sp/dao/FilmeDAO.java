@@ -17,7 +17,7 @@ public class FilmeDAO extends SQLiteOpenHelper {
 
         //Aqui se abre o banco de dados
 
-        super(context, "db_filme",null, 1); //o contexro que ele vai passar. o nome do  banco de dados. versão. O super é SQLiteOpenHelper(classe mãe)
+        super(context, "db_filme",null, 2); //o contexro que ele vai passar. o nome do  banco de dados. versão. O super é SQLiteOpenHelper(classe mãe)
     }//importar para consgir ter acesso ao banco de dados
     @Override
     public void onCreate(SQLiteDatabase db) {//entrega o banco, não precisa se identificar
@@ -42,6 +42,8 @@ public class FilmeDAO extends SQLiteOpenHelper {
         /*Strig sql = "DROP TABLE IF EXISTS tbl_filme";
         * db.execSQL(sql)
         * onCreate(db)*/
+        String sql = "ALTER TABLE tbl_filme ADD COLUMN foto BLOB";
+        db.execSQL(sql);
     }
 
 
@@ -65,6 +67,7 @@ public class FilmeDAO extends SQLiteOpenHelper {
         dados.put ("data_lancamento", filme.getDataLancamento());
         dados.put("duracao", filme.getDuracao());
         dados.put("nota", filme.getNota());
+        dados.put("foto", filme.getFoto());
         return dados;
     }
 
@@ -89,6 +92,7 @@ public class FilmeDAO extends SQLiteOpenHelper {
             filme.setDataLancamento(c.getString(c.getColumnIndex("data_lancamento")));
             filme.setDuracao(c.getString(c.getColumnIndex("duracao")));
             filme.setNota(c.getInt(c.getColumnIndex("nota")));
+            filme.setFoto(c.getBlob(c.getColumnIndex("foto")));
 
             filmes.add(filme); //adiciona no array list
 

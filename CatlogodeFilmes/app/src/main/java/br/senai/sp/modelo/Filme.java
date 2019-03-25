@@ -11,6 +11,8 @@ public class Filme implements Serializable{
     private String duracao;
     private String genero;
     private int nota;
+    private byte[] foto;
+
 
     public int getId() {
         return id;
@@ -66,6 +68,17 @@ public class Filme implements Serializable{
 
     public void setNota(int nota) {
         this.nota = nota;
+    }
+
+    public void setFoto(byte[] foto) {
+
+        this.foto = foto;
+    }
+
+
+    public byte[] getFoto() {
+
+        return foto;
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,6 +50,8 @@ public class CadastroFilmeActivity extends AppCompatActivity {
                 intentGaleria.setType("image/*");
                 startActivityForResult(intentGaleria, 5000);/*A foto vai retornar o numero que vc escolheu*/
 
+                /*Ao abrir  a aplicação, caso vc não seleciona uma imagem, ele da erro pq o resultCode volta sem nada*/
+
             }
         });
 
@@ -73,18 +76,30 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 
     }
 
+
+    /*A camera e a galeria chama esse método*/
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode, @Nullable Intent data) {
         Toast.makeText(CadastroFilmeActivity.this, "SELECIONADA", Toast.LENGTH_LONG).show();
 
         try {
-            InputStream inputStream = getContentResolver().openInputStream(data.getData());
+            Log.d("Retorno,", String.valueOf(resultCode));
 
-            /*fabrica os bits da imagem ele é a imagem*/
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            imgFoto.setImageBitmap(bitmap);
-            
+
+            /**serve para nãoo travar a aplicação ao não selecionar a imagem*/
+            if(resultCode !=0){
+
+                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+
+
+                /*fabrica os bits da imagem ele é a imagem*/
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                imgFoto.setImageBitmap(bitmap);
+
+
+            }
+
 
 
 

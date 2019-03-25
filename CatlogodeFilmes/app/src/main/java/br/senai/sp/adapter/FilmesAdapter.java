@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import br.senai.sp.catlogodefilmes.R;
+import br.senai.sp.conversores.Imagem;
 import br.senai.sp.modelo.Filme;
 
 public class FilmesAdapter extends BaseAdapter {
@@ -62,6 +64,15 @@ public class FilmesAdapter extends BaseAdapter {
 
         TextView txtTitulo = view.findViewById(R.id.txt_titulo);
         txtTitulo.setText(filme.getTitulo());
+
+
+        ImageView foto = view.findViewById(R.id.image_filme);
+
+
+        if(filme.getFoto() !=null){
+            foto.setImageBitmap(Imagem.arrayToBitmap(filme.getFoto()));
+        }
+
 
 
         /*RatingBar nota = view.findViewById(R.id.rate_nota);

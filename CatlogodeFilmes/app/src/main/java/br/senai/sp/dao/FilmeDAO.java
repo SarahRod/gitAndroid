@@ -17,7 +17,7 @@ public class FilmeDAO extends SQLiteOpenHelper {
 
         //Aqui se abre o banco de dados
 
-        super(context, "db_filme",null, 2); //o contexro que ele vai passar. o nome do  banco de dados. versão. O super é SQLiteOpenHelper(classe mãe)
+        super(context, "db_filme",null, 4); //o contexro que ele vai passar. o nome do  banco de dados. versão. O super é SQLiteOpenHelper(classe mãe)
     }//importar para consgir ter acesso ao banco de dados
     @Override
     public void onCreate(SQLiteDatabase db) {//entrega o banco, não precisa se identificar
@@ -29,7 +29,8 @@ public class FilmeDAO extends SQLiteOpenHelper {
                 "genero TEXT NOT NULL, " +
                 "data_lancamento TEXT NOT NULL, " +
                 "duracao TEXT NOT NULL, " +
-                "nota INTEGER NOT NULL)";
+                "nota INTEGER NOT NULL, " +
+                "foto BLOB)";
 
          db.execSQL(sql);
 

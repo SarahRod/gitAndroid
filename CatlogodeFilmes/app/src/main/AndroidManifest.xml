@@ -23,12 +23,20 @@
         <activity android:name=".CadastroFilmeActivity">
             <meta-data android:name = "android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity">
-
-
+            </meta-data>
+        </activity>
+        <!--permitir que a camera acesse o aplicativo-->
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths">
             </meta-data>
 
-
-        </activity>
+        </provider>
 
     </application>
 

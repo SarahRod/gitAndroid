@@ -3,7 +3,10 @@ package br.senai.sp.catlogodefilmes;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -23,10 +27,14 @@ import br.senai.sp.modelo.Filme;
 
 public class CadastroFilmeActivity extends AppCompatActivity {
 
+    public static final int GALERIA_REQUEST = 5000;
+    public static final int CAMERA_REQUEST = 1000;
+
     private CadastroFilmeHelper helper;
     private Button btnCamera;
     private Button btnGaleria;
     private ImageView imgFoto;
+    private String caminhoFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 
                 Intent intentGaleria = new Intent(Intent.ACTION_GET_CONTENT);
                 intentGaleria.setType("image/*");
-                startActivityForResult(intentGaleria, 5000);/*A foto vai retornar o numero que vc escolheu*/
+                startActivityForResult(intentGaleria, GALERIA_REQUEST);/*A foto vai retornar o numero que vc escolheu*/
 
                 /*Ao abrir  a aplicação, caso vc não seleciona uma imagem, ele da erro pq o resultCode volta sem nada*/
 
@@ -61,8 +69,26 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CadastroFilmeActivity.this, "Chamando a Câmera", Toast.LENGTH_LONG).show();
-            }
+                Intent intentCamera =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                //nome do arquivo
+                /**/
+                String nomeArquivo = "/IMG_" + System.currentTimeMillis()+".jpg";
+                caminhoFoto = getExternalFilesDir(null) + nomeArquivo;
+
+                Log.d("nome do arquivo", nomeArquivo);
+
+                File arquivoFoto = new File(caminhoFoto);
+
+                Uri fotoUri = FileProvider.getUriForFile(
+                        CadastroFilmeActivity.this,
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        arquivoFoto);
+                //colocar o caminho de onde essa foro vai ficar - o URI é o endereço
+                //tenho a intençãode criar um arquivo - a foto vai ser gravada e vai se chamar foto.jpg ---  leve para a camera o caminho para onde vai levar a foto com ela.
+                //putExtra levando o caminho para guardar a foto. -- a saida da foto vai para o arquivo foto.
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(intentCamera, CAMERA_REQUEST);
+           }
         });
 
 
@@ -81,34 +107,42 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode, @Nullable Intent data) {
-        Toast.makeText(CadastroFilmeActivity.this, "SELECIONADA", Toast.LENGTH_LONG).show();
 
-        try {
-            Log.d("Retorno,", String.valueOf(resultCode));
+        if(resultCode == RESULT_OK){
 
-
-            /**serve para nãoo travar a aplicação ao não selecionar a imagem*/
-            if(resultCode !=0){
-
-                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+            try {
+                //Log.d("Retorno,", String.valueOf(resultCode));
 
 
-                /*fabrica os bits da imagem ele é a imagem*/
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                imgFoto.setImageBitmap(bitmap);
+                /**serve para nãoo travar a aplicação ao não selecionar a imagem*/
+                if(requestCode != GALERIA_REQUEST){
+
+                    InputStream inputStream = getContentResolver().openInputStream(data.getData());
 
 
+                    /*fabrica os bits da imagem ele é a imagem*/
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    imgFoto.setImageBitmap(bitmap);
+
+                }
+
+                if(requestCode == CAMERA_REQUEST){
+                    Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+                    Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+                    imgFoto.setImageBitmap(bitmapReduzido);
+                }
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
 
-
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
 
 
-        super.onActivityResult(requestCode, resultCode, data);
+
+
+        //super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override // reescreve o codigo que tem na mãe e rodou o nosso método que criamos e retornou o menu inflado

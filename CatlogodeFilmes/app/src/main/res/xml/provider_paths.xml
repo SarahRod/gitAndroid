@@ -1,0 +1,6 @@
+<paths>
+    <external-cache-path
+        name="filmes"
+        path="."/>
+    <!--dando permissão para acessar a pasta que vc ja esta-->
+</paths>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.List;
 
+import br.senai.sp.agendacontatos.adapter.ContatoAdapter;
 import br.senai.sp.agendacontatos.dao.ContatoDAO;
 import br.senai.sp.agendacontatos.modelo.Contato;
 
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 "Minha Vida em Marte"};
         */
 
-        ArrayAdapter<Contato> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, contatos);
+        ContatoAdapter adapter = new ContatoAdapter (this, contatos);
         listaContatos.setAdapter(adapter);
 
     }

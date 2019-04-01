@@ -1,125 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroContato">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="15dp">
+        tools:context=".CadastroContato">
 
-        <!--Titulo da Activity-->
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cadastrar Contato"
-            android:textSize="35dp"
-            android:layout_marginTop="8dp"
-            android:textAlignment="center"
-            android:layout_marginBottom="10dp" />
+            android:layout_height="200sp">
 
 
-        <!--****************CADASTRO NOME****************-->
-        <android.support.design.widget.TextInputLayout
+            <ImageView
+                android:id="@+id/image_view_contato"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:src="@drawable/ic_contato"
+                />
+
+            <Button
+                android:id="@+id/btn_galeria"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="80sp"
+                android:background="@drawable/botao_galeria"/>
+
+
+            <Button
+                android:id="@+id/btn_camera"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="20sp"
+                android:layout_alignParentEnd="true"
+                />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout_txt_nome">
-            <EditText
-                android:id="@+id/txt_nome"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nome"
-                android:layout_marginBottom="10dp"/>
+                android:id="@+id/layout_txt_nome">
+                <EditText
+                    android:id="@+id/txt_nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome"
+                    android:layout_marginBottom="10dp"/>
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <!--**************CADASTRO ENDEREÇO**********-->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout_txt_endereco">
-            <EditText
-                android:id="@+id/txt_endereco"
+            <!--**************CADASTRO ENDEREÇO**********-->
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Endereço"/>
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/layout_txt_endereco">
+                <EditText
+                    android:id="@+id/txt_endereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Endereço"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ex.: Rua 15 de Novembro,132 - Vila Mender - Rio de Janeiro - RJ"
-            android:textSize="12sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="20dp" />
-
-
-        <!--*********CADASTRO TELEFONE*************-->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout_txt_telefone">
-            <EditText
-                android:id="@+id/txt_telefone"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Telefone"
-                android:inputType="textPhonetic"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ex.: (00) 0000-000 "
-        android:textSize="12sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="20dp"
-           />
+                android:text="Ex.: Rua 15 de Novembro,132 - Vila Mender - Rio de Janeiro - RJ"
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="20dp" />
 
 
-        <!--********CADASTRO E-MAIL***************-->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout_txt_email">
-            <EditText
-                android:id="@+id/txt_email"
+            <!--*********CADASTRO TELEFONE*************-->
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-mail"
-                android:inputType="textEmailAddress"
-                android:layout_marginBottom="10dp" />
-        </android.support.design.widget.TextInputLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ex.: xxxx@xxx.com "
-            android:textSize="12sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="20dp"
-            />
+                android:id="@+id/layout_txt_telefone">
+                <EditText
+                    android:id="@+id/txt_telefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefone"
+                    android:inputType="textPhonetic"/>
+            </android.support.design.widget.TextInputLayout>
 
-
-
-
-        <!--***********CADASTRO LINKEDIN************-->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout_txt_linkedin">
-            <EditText
-                android:id="@+id/txt_linkedin"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Endereço Linkedin"
-                android:inputType="textEmailAddress"
-                android:layout_marginBottom="10dp"/>
-        </android.support.design.widget.TextInputLayout>
+                android:text="Ex.: (00) 0000-0000 "
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+            <!--********CADASTRO E-MAIL***************-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_txt_email">
+                <EditText
+                    android:id="@+id/txt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="10dp" />
+            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ex.: xxxx@xxx.com "
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+
+            <!--***********CADASTRO LINKEDIN************-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_txt_linkedin">
+                <EditText
+                    android:id="@+id/txt_linkedin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Endereço Linkedin"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="10dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

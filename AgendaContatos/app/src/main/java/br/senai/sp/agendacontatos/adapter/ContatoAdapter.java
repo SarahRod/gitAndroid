@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.senai.sp.agendacontatos.R;
+import br.senai.sp.agendacontatos.conversores.Imagem;
 import br.senai.sp.agendacontatos.modelo.Contato;
 
 public class ContatoAdapter extends BaseAdapter {
@@ -68,9 +69,9 @@ public class ContatoAdapter extends BaseAdapter {
         ImageView foto = view.findViewById(R.id.image_contato);
 
 
-        /*if(filme.getFoto() !=null){
-            foto.setImageBitmap(Imagem.arrayToBitmap(filme.getFoto()));
-        }*/
+        if(contato.getFoto() !=null){
+            foto.setImageBitmap(Imagem.arrayToBitmap(contato.getFoto()));
+        }
 
 
        return view;

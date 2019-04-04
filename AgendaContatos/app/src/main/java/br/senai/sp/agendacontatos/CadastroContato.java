@@ -4,12 +4,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -84,10 +89,24 @@ public class CadastroContato extends AppCompatActivity {
         });
 
 
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrirCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+                String nomeArquivo = "/IMG_" + System.currentTimeMillis()+".jpg";
+                Log.d("nome do arquivo", nomeArquivo);
+                caminhoFoto = getExternalFilesDir(null) + nomeArquivo;
 
+                File arquivoFoto = new File(caminhoFoto);
 
+                Uri fotoUri = FileProvider.getUriForFile(CadastroContato.this, BuildConfig.APPLICATION_ID + ".provider", arquivoFoto);
 
+                abrirCamera.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(abrirCamera, CAMERA_REQUEST);
+
+            }
+        });
 
         Intent intent = getIntent();
         Contato contato = (Contato) intent.getSerializableExtra("contato");
@@ -113,7 +132,7 @@ public class CadastroContato extends AppCompatActivity {
 
 
                 /**serve para nãoo travar a aplicação ao não selecionar a imagem*/
-                if(resultCode != GALERIA_REQUEST){
+                if(requestCode == GALERIA_REQUEST){
 
                     InputStream inputStream = getContentResolver().openInputStream(data.getData());
 
@@ -122,6 +141,12 @@ public class CadastroContato extends AppCompatActivity {
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     imgFoto.setImageBitmap(bitmap);
 
+                }
+
+                if(requestCode == CAMERA_REQUEST){
+                    Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+                    Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+                    imgFoto.setImageBitmap(bitmapReduzido);
                 }
 
             } catch (FileNotFoundException e) {
@@ -133,7 +158,7 @@ public class CadastroContato extends AppCompatActivity {
 
 
 
-        super.onActivityResult(requestCode, resultCode, data);
+       // super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -179,7 +204,7 @@ public class CadastroContato extends AppCompatActivity {
 
                 break;
 
-            case R.id.menu_sair:
+            /*case R.id.menu_sair:
 
                 AlertDialog.Builder builder =  new AlertDialog.Builder(this);
                 builder.setTitle("Sair");
@@ -200,8 +225,25 @@ public class CadastroContato extends AppCompatActivity {
 
                 builder.create().show();
 
-                break;
+                break;*/
 
+            case R.id.ligar:
+
+                Contato contatoChamada = helper.getContato();
+
+                if(contatoChamada.getId() == 0){
+                    Toast.makeText(this, "Erro. Verifique se os campos estão preenchidos corretamente ", Toast.LENGTH_LONG);
+                }else{
+                    Contato numeroContato = helper.getContato();
+                    Uri uri = Uri.parse("tel:" + numeroContato.getTelefone());
+
+                    Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                    startActivity(intent);
+
+                }
+
+
+                break;
             default:
                 Toast.makeText(CadastroContato.this,"Nada", Toast.LENGTH_SHORT).show();
                 break;

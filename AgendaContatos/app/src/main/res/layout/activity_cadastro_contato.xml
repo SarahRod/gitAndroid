@@ -42,6 +42,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="20sp"
                 android:layout_alignParentEnd="true"
+                android:background="@drawable/button_camera"
                 />
 
 

@@ -20,7 +20,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
 
         //ABERTURA DO BANCO DE DADOS
 
-        super(context, "db_contato", null, 2);
+        super(context, "db_contato", null, 4);
     }
 
     @Override
@@ -32,7 +32,8 @@ public class ContatoDAO extends SQLiteOpenHelper {
                "endereco TEXT NOT NULL, " +
                "telefone TEXT NOT NULL, " +
                "email TEXT NOT NULL, " +
-               "linkedin TEXT NOT NULL)";
+               "linkedin TEXT NOT NULL, " +
+               "foto BLOB)";
 
         db.execSQL(sql);
     }
@@ -63,6 +64,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
         dados.put("telefone", contato.getTelefone());
         dados.put("email", contato.getEmail());
         dados.put("linkedin", contato.getLinkedin());
+        dados.put("foto", contato.getFoto());
 
         return dados;
     }
@@ -86,6 +88,7 @@ public class ContatoDAO extends SQLiteOpenHelper {
             contato.setTelefone(c.getString(c.getColumnIndex("telefone")));
             contato.setEmail(c.getString(c.getColumnIndex("email")));
             contato.setLinkedin(c.getString(c.getColumnIndex("linkedin")));
+            contato.setFoto(c.getBlob(c.getColumnIndex("foto")));
 
 
 

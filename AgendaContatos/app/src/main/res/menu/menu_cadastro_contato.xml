@@ -3,6 +3,14 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/ligar"
+        android:title="Ligar"
+        android:icon="@drawable/ic_telefone_1"
+        app:showAsAction="always"
+
+        />
+
+    <item
         android:id="@+id/menu_limpar"
         android:title="Limpar"
         android:icon="@drawable/ic_clear"
@@ -10,12 +18,6 @@
 
         />
 
-    <item
-        android:id="@+id/menu_sair"
-        android:title="Sair"
-        android:icon="@drawable/ic_sair"
-        app:showAsAction="always"
-        />
 
 
     <item

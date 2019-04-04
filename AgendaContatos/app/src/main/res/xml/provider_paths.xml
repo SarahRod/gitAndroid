@@ -1,6 +1,6 @@
 <paths>
     <external-path
-        name="filmes"
+        name="contatos"
         path="."/>
     <!--dando permissão para acessar a pasta que vc ja esta-->
 </paths>

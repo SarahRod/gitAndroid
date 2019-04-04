@@ -69,13 +69,14 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCamera =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent abrirCamera =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //nome do arquivo
                 /**/
                 String nomeArquivo = "/IMG_" + System.currentTimeMillis()+".jpg";
+                Log.d("nome do arquivo", nomeArquivo);
                 caminhoFoto = getExternalFilesDir(null) + nomeArquivo;
 
-                Log.d("nome do arquivo", nomeArquivo);
+
 
                 File arquivoFoto = new File(caminhoFoto);
 
@@ -86,8 +87,11 @@ public class CadastroFilmeActivity extends AppCompatActivity {
                 //colocar o caminho de onde essa foro vai ficar - o URI é o endereço
                 //tenho a intençãode criar um arquivo - a foto vai ser gravada e vai se chamar foto.jpg ---  leve para a camera o caminho para onde vai levar a foto com ela.
                 //putExtra levando o caminho para guardar a foto. -- a saida da foto vai para o arquivo foto.
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
-                startActivityForResult(intentCamera, CAMERA_REQUEST);
+
+
+
+                abrirCamera.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(abrirCamera, CAMERA_REQUEST);
            }
         });
 
@@ -115,7 +119,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 
 
                 /**serve para nãoo travar a aplicação ao não selecionar a imagem*/
-                if(requestCode != GALERIA_REQUEST){
+                if(requestCode == GALERIA_REQUEST){
 
                     InputStream inputStream = getContentResolver().openInputStream(data.getData());
 
